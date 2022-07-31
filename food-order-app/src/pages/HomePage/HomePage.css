@@ -12,6 +12,10 @@ p {
     font-size: 1rem;
 }
 
+ul {
+    list-style: none;
+}
+
 .section-hero {
     padding: 8rem 0 0;
 }
@@ -37,7 +41,6 @@ p {
 .food-list {
     background-color: #ffffff;
     color: #000000;
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -47,20 +50,14 @@ p {
 
 .food-list li {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: space-between;
 }
 
-.food-list img {
-    width: 100%;
-    /* height: auto; */
-    display: block;
-    object-fit: cover;
-
-}
-
 .left-info {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
 }
 
@@ -76,9 +73,18 @@ p {
 
 .img-container {
     height: 6rem;
-    width: auto;
-    aspect-ratio: 16/9;
+    width: 11rem;
     overflow: hidden;
+    /* background-size: cover; */
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    display: block;
+    object-fit: cover;
+
 }
 
 .meal-info {
@@ -88,15 +94,21 @@ p {
 }
 
 .amount {
-    width: 1.8rem;
+    width: 2.8rem;
     border: 1px solid #dfc5a1;
     border-radius: 0.3rem;
     -webkit-border-radius: 0.3rem;
     -moz-border-radius: 0.3rem;
     -ms-border-radius: 0.3rem;
     -o-border-radius: 0.3rem;
-    padding: 0 0.25rem;
+    padding: 0.1rem 0.25rem;
     text-align: center;
+}
+
+/* always show the increase/decrease button */
+.amount[type=number]::-webkit-inner-spin-button,
+.amount[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
 }
 
 .right-info {
@@ -115,4 +127,12 @@ p {
     -o-border-radius: 0.55rem;
     -webkit-border-radius: 0.35rem;
     padding: 0.4rem;
+}
+
+@media screen and (max-width:568px) {
+    .img-container img {
+        width: auto;
+        height: 100%;
+
+    }
 }

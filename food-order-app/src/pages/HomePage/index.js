@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./HomePage.css";
 import AppService from '../../services/getAPI';
-import Loading from "../../components/Loading";
+import { Loading } from '../../components';
 import MealItem from '../../components/MealItem';
 
-export const HomePage = () => {
-    const [meals, setMeals] = useState([]);
-    const [quantity, setQuantity] = useState(0);
-    
+export const HomePage = (props) => {
+    const { cart, onAddItemToCart } = props;
+    const [meals, setMeals] = useState([]);        
     const [loading, setLoading] = useState(true);
-    const [selected, setSelected] = useState(null);
 
     /* Fetch API */
     const fetchMeal = async () => {
@@ -17,28 +15,12 @@ export const HomePage = () => {
         const data = await AppService.getAPI("https://625a91bf0ab4013f94a2d9a8.mockapi.io/meals");
         setMeals(data.splice(0, 4));
         setLoading(false);
-    }
-
-
-    const mealItems = meals.map((meal) => {
-        // const { id, name, description, price, image} = meal;
-        // meal.amount = amount;
-        // console.log(meal);
+    }    
+    
+    const mealItems = meals.map((meal, index) => {
         return (<>
-            <MealItem meal={meal} />
-            {/* <li key={id}>
-                <div className='left-info'>
-                    <div className='img-container'><img src={image} /></div>
-                    <div className='meal-info'>
-                        <span className='meal-title'>{name}</span>
-                        <span className='meal-des'>{description}</span>
-                        <span className='meal-price'>${price}</span>
-                    </div>
-                </div>
-                <div className='right-info'><label htmlFor="amount">Amount <input className="amount" name="amount" onChange={onHandleChange} value={amount}></input></label>
-                    <button onClick={() => { onHandleClick() } }>+ Add</button>
-                </div>
-            </li> */}
+            <MealItem key={ index} meal={meal} cart={cart} onAddItemToCart={onAddItemToCart} />
+            
         </>);
     });
     useEffect(() => {
@@ -60,8 +42,8 @@ export const HomePage = () => {
                 </div>
             </div>            
             <div className='row section justify-content-center'>
-                <div className='col-sm-12 col-md-10 col-lg-10'>   
-                    {loading === true ? <Loading /> : (
+                <div className='col-sm-12 col-md-10 col-lg-10'>  
+                    {loading === true ? <Loading />: (
                         <ul className='food-list'>{ mealItems}</ul>
                     )}    
                     
