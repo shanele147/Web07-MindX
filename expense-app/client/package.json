@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "expense-app",
+=======
+  "name": "expensive-app",
+>>>>>>> origin/expense-app
   "version": "0.1.0",
   "private": true,
   "dependencies": {

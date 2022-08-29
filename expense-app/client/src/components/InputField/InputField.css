@@ -20,6 +20,7 @@ select {
 .input-container:is(label) {
   font-size: 0.75rem;
 }
+<<<<<<< HEAD
 .expense-input[type="date"]::placeholder {
   left: 1rem;
 }
@@ -28,6 +29,16 @@ select {
 }
 .expense-input[type="text"] {
   caret-color: #ae8cfa;
+=======
+.expensive-input[type="date"]::placeholder {
+  left: 1rem;
+}
+.expensive-input[type="date"]:focus::placeholder {
+  display: none;
+}
+.expensive-input[type="text"] {
+  caret-color: #00bcd4;
+>>>>>>> origin/expense-app
   padding-bottom: 1rem;
   left: 1rem;
   border-bottom: 1px solid;
@@ -35,9 +46,15 @@ select {
   /* background-color: #eaeaea; */
 }
 
+<<<<<<< HEAD
 .expense-input[type="text"]:focus,
 .expense-select,
 .expense-select:focus {
+=======
+.expensive-input[type="text"]:focus,
+.expensive-select,
+.expensive-select:focus {
+>>>>>>> origin/expense-app
   background-color: transparent;
 }
 
@@ -49,10 +66,17 @@ select {
   font-size: 1rem;
   -webkit-box-align: center;
   align-items: center;
+<<<<<<< HEAD
   border: 1px solid #ae8cfa;
   border-radius: 9999px;
   background-color: transparent;
   color: #ae8cfa;
+=======
+  border: 1px solid #00bcd4;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: #00bcd4;
+>>>>>>> origin/expense-app
 }
 /* ::-webkit-calendar-picker-indicator {
   filter: invert(1);
@@ -67,9 +91,18 @@ ul[role="listbox"] {
 .input-container div {
   min-width: auto;
 }
+<<<<<<< HEAD
 @media screen and (max-width: 568px) {
   .tw-dialog {
     max-width: 80%;
     width: 80%;
   }
 }
+=======
+@media screen and (max-width:568px) {
+  .tw-dialog {
+    max-width:80%;
+    width: 80%;
+  }
+}
+>>>>>>> origin/expense-app

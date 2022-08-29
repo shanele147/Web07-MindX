@@ -1,0 +1,18 @@
+.tab-container {
+  color: #ffffff;
+}
+.tab-index {
+  position: relative;
+}
+.tab-content {
+  position: absolute;
+}
+
+.active-border {
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+.tab-container button:not(:is(.active-border)) {
+  opacity: 0.4;
+  border-color: #aff7ffa3;
+}
