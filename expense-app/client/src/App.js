@@ -21,7 +21,6 @@ function App() {
     "Household",
   ]);
   const [expenseType, setExpenseType] = useState(["Income", "Expense"]);
-<<<<<<< HEAD
   const [transactionList, setTransactionList] = useState([]);
 
   const onAddNewTransaction = (newTransaction) => {
@@ -37,15 +36,6 @@ function App() {
       <ExpenseContext.Provider
         value={{ wallets, categories, expenseType, onAddNewTransaction }}
       >
-=======
-
-  // const [isAdded, setToggleAdded] = useState(false);
-  // const DisplayContext = React.createContext();
-
-  return (
-    <Browser>
-      <ExpenseContext.Provider value={{ wallets, categories, expenseType }}>
->>>>>>> origin/expense-app
         <Header></Header>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>

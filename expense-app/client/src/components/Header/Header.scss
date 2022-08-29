@@ -1,5 +1,4 @@
 .nav-container {
-<<<<<<< HEAD
   background-color: #5853bc;
   &_logo {
     align-items: center;
@@ -18,30 +17,11 @@
 }
 .btn-add-expense {
   background-color: #ae8cfa;
-=======
-  background-color: #0f1724;
-  &_logo {
-    align-items: center;
-    justify-content: space-between;
-  }
-  &_list {
-    gap: 1.5rem;
-  }  
-}
-.btn-add-expensive {
-  background-color: #00bcd4;
->>>>>>> origin/expense-app
   /* top: 1rem;
   right: -88vw; */
   padding: 1rem;
   border-radius: 50%;
 }
-<<<<<<< HEAD
 .btn-add-expense span {
   font-size: 1.5rem;
 }
-=======
-.btn-add-expensive span {
-  font-size: 1.5rem;
-}
->>>>>>> origin/expense-app
