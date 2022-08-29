@@ -1,0 +1,27 @@
+.nav-container {
+  background-color: #5853bc;
+  &_logo {
+    align-items: center;
+    // justify-content: center;
+    gap: 1.5rem;
+    h3 {
+      color: #ffffff;
+    }
+  }
+  &_list {
+    gap: 1.5rem;
+  }
+  svg {
+    color: #ffffff;
+  }
+}
+.btn-add-expense {
+  background-color: #ae8cfa;
+  /* top: 1rem;
+  right: -88vw; */
+  padding: 1rem;
+  border-radius: 50%;
+}
+.btn-add-expense span {
+  font-size: 1.5rem;
+}
