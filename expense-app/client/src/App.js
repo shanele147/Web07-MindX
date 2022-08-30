@@ -11,6 +11,24 @@ import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header";
 
 function App() {
+  const data = [
+    {
+      amount: "400",
+      category: "Food",
+      date: "2022-08-13",
+      description: "Dinner with friends",
+      type: "Expense",
+      wallet: "Bank",
+    },
+    {
+      amount: "150",
+      category: "Food",
+      date: "2022-08-02",
+      description: "Lunch with family",
+      type: "Expense",
+      wallet: "Bank",
+    },
+  ];
   const [wallets, setWallets] = useState(["Bank", "Cash"]);
   const [categories, setCategory] = useState([
     "Beverage",
@@ -21,20 +39,31 @@ function App() {
     "Household",
   ]);
   const [expenseType, setExpenseType] = useState(["Income", "Expense"]);
-  const [transactionList, setTransactionList] = useState([]);
+  const [transactionList, setTransactionList] = useState(data);
 
   const onAddNewTransaction = (newTransaction) => {
-    console.log(newTransaction);
+    // console.log(newTransaction);
     /* let newList = [];
     newList.push(newTransaction); */
     // transactionList.push(newTransaction);
     setTransactionList([...transactionList, newTransaction]);
   };
 
+  /* useEffect(() => {
+    
+  },
+  transactionList); */
+
   return (
     <Browser>
       <ExpenseContext.Provider
-        value={{ wallets, categories, expenseType, onAddNewTransaction }}
+        value={{
+          wallets,
+          categories,
+          expenseType,
+          transactionList,
+          onAddNewTransaction,
+        }}
       >
         <Header></Header>
         <Routes>

@@ -8,19 +8,33 @@ import "./ExpenseTabs.css";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function ExpenseTabs() {
-  const { expenseType } = useExpenseContext();
+  const { expenseType, transactionList } = useExpenseContext();
+  const expenseList = transactionList.filter((elm) => elm.type === "Expense");
+  let expenseData = expenseList.map((expense) => {
+    console.log(expense);
+    const { amount, category, description } = expense;
+    return expense;
+    /* return (
+      <>
+        <li>amount</li>
+        <li>category</li>
+        <li>description</li>
+      </>
+    ); */
+  });
+  const incomeList = transactionList.filter((elm) => elm.type === "Income");
+  console.log({ expenseList, incomeList });
   const tabsData = [
     {
       label: expenseType[0],
-      content:
-        "Ut irure mollit nulla eiusmod excepteur laboris elit sit anim magna tempor excepteur labore nulla.",
+      content: "incomeList",
     },
     {
       label: expenseType[1],
-      content:
-        "Fugiat dolor et quis in incididunt aute. Ullamco voluptate consectetur dolor officia sunt est dolor sint.",
+      content: expenseData,
     },
   ];
+  console.log(tabsData[1].content);
 
   const data = {
     labels: expenseType,
@@ -58,21 +72,25 @@ export default function ExpenseTabs() {
           );
         })}
       </div>
-      {/* Show active tab content. */}
-      {tabsData.map((tab, idx) => {
-        return (
-          <div
-            className={`py-4 px-6 tab-content animate__animated animate__fast ${
-              idx === activeTabIndex ? "animate__fadeIn" : "animate__fadeOut"
-            }`}
-          >
-            <p>{tab.content}</p>
-            <div className="w-1/2 mx-auto py-24">
+      <div className="flex flex-wrap justify-center">
+        {/* Show active tab content. */}
+        {tabsData.map((tab, idx) => {
+          return (
+            <div
+              className={`py-4 px-6 mx-auto tab-content animate__animated animate__fast ${
+                idx === activeTabIndex ? "animate__fadeIn" : "animate__fadeOut"
+              }`}
+            >
+              <ul>
+                {tabsData[1].content.map((elm) => {
+                  return <li>{elm.amount}</li>;
+                })}
+              </ul>
               <Pie data={data} />
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
