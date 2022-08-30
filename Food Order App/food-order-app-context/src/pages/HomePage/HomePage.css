@@ -1,0 +1,152 @@
+a,
+button,
+input,
+a:hover button:hover, a:focus, button:focus {
+  border: none;
+  outline: none;
+}
+
+a,
+span,
+p {
+  font-size: 1rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.section-hero {
+  padding: 9rem 0 6rem;
+}
+
+.hero-banner {
+  /* height: 28rem; */
+  background-image: url("../../../public/images/top-banner-2.jpg");
+  /* clip-path: ellipse(85% 100% at 50% 0%); */
+  clip-path: ellipse(100% 88% at 27% 15%);
+  background-size: cover;  
+}
+
+.section {
+  padding: 2rem 0 0;
+}
+
+.top-content {
+  background-color: #1a1816;
+  color: #ffffff;
+  text-align: center;
+  padding: 1.5rem 3rem;
+  margin: auto;
+  box-shadow: 0px 9px 38px -9px #020202;
+  border-radius: 0.8rem;
+}
+
+.top-content h3 {
+  text-transform: capitalize;
+}
+
+.food-list {
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 0.6rem;
+}
+
+.food-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.left-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.meal-title,
+.meal-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.meal-price {
+  color: #c96211;
+}
+
+.img-container {
+  height: 6rem;
+  width: 11rem;
+  overflow: hidden;
+  /* background-size: cover; */
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  display: block;
+  object-fit: cover;
+}
+
+.meal-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.amount {
+  width: 2.8rem;
+  border: 1px solid #dfc5a1;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+  padding: 0.15rem 0.25rem;
+  text-align: center;
+}
+.amount[type="number"]::-webkit-input-placeholder {
+  text-align: center;
+}
+
+/* always show the increase/decrease button */
+.amount[type="number"]::-webkit-inner-spin-button,
+.amount[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.right-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.right-info label {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.right-info button {
+  background-color: #c96211;
+  color: #ffffff;
+  border-radius: 0.55rem;
+  -webkit-border-radius: 0.55rem;
+  -moz-border-radius: 0.55rem;
+  -ms-border-radius: 0.55rem;
+  -o-border-radius: 0.55rem;
+  -webkit-border-radius: 0.35rem;
+  padding: 0.4rem;
+}
+
+@media screen and (max-width: 568px) {
+  .img-container img {
+    width: auto;
+    height: 100%;
+  }
+}
