@@ -13,53 +13,76 @@ import Header from "./components/Header";
 function App() {
   const data = [
     {
+      date: "2022-08-01",
+      amount: "600",
+      category: "Bonus",
+      description: "July overtime working",
+      type: "Income",
+      wallet: "Bank",
+    },
+    {
+      date: "2022-08-13",
       amount: "400",
       category: "Food",
-      date: "2022-08-13",
       description: "Dinner with friends",
       type: "Expense",
       wallet: "Bank",
     },
     {
-      amount: "150",
-      category: "Food",
       date: "2022-08-02",
-      description: "Lunch with family",
+      amount: "150",
+      category: "Shopping",
+      description: "Weekend super market",
+      type: "Expense",
+      wallet: "Bank",
+    },
+    {
+      date: "2022-08-18",
+      amount: "50",
+      category: "Food",
+      description: "Hangout weekend",
       type: "Expense",
       wallet: "Bank",
     },
   ];
   const [wallets, setWallets] = useState(["Bank", "Cash"]);
-  const [categories, setCategory] = useState([
+  const [expenseCategories, setExpenseCategory] = useState([
     "Beverage",
     "Food",
     "Shopping",
     "Pet",
     "Phone",
     "Household",
+    "Bills",
+    "Education",
+    "Entertainment",
+    "Health",
+    "Travel",
+    "Transportation",
+    "Others",
+  ]);
+  const [incomeCategories, setIncomeCategory] = useState([
+    "Salary",
+    "Awards",
+    "Bonus",
+    "Lottery",
+    "Phone",
+    "Investment",
   ]);
   const [expenseType, setExpenseType] = useState(["Income", "Expense"]);
   const [transactionList, setTransactionList] = useState(data);
 
   const onAddNewTransaction = (newTransaction) => {
-    // console.log(newTransaction);
-    /* let newList = [];
-    newList.push(newTransaction); */
-    // transactionList.push(newTransaction);
     setTransactionList([...transactionList, newTransaction]);
   };
-
-  /* useEffect(() => {
-    
-  },
-  transactionList); */
 
   return (
     <Browser>
       <ExpenseContext.Provider
         value={{
           wallets,
-          categories,
+          expenseCategories,
+          incomeCategories,
           expenseType,
           transactionList,
           onAddNewTransaction,

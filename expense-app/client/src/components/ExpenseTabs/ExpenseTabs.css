@@ -6,6 +6,7 @@
 }
 .tab-content {
   position: absolute;
+  /* width: 40%; */
 }
 
 .active-border {
@@ -15,4 +16,45 @@
 .tab-container button:not(:is(.active-border)) {
   opacity: 0.4;
   border-color: #aff7ffa3;
+}
+.tab-content ul {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+.animate__fadeOut {
+  visibility: hidden;
+}
+p.category {
+  position: relative;
+}
+
+p.category::before {
+  content: "";
+  height: 2.4rem;
+  width: 1px;
+  position: absolute;
+  top: 0.35rem;
+  left: -0.5rem;
+}
+p.amount {
+  color: #bab8c3;
+}
+p.description {
+  /* font-size: 0.9rem; */
+  color: #a7a2f3a1;
+}
+
+/* style of category text */
+p.food {
+  color: #f5be57;
+}
+p.food::before {
+  background-color: #f5be57;
+}
+p.shopping {
+  color: #f47b7c;
+}
+p.shopping::before {
+  background-color: #f47b7c;
 }

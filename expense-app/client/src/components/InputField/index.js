@@ -13,8 +13,13 @@ import "animate.css";
 
 const InputField = (props) => {
   const { open, handleOpen } = props;
-  const { wallets, categories, expenseType, onAddNewTransaction } =
-    useExpenseContext();
+  const {
+    wallets,
+    expenseCategories,
+    incomeCategories,
+    expenseType,
+    onAddNewTransaction,
+  } = useExpenseContext();
   const [category, setCategory] = useState("");
   const [wallet, setWallet] = useState("");
   const [type, setType] = useState("");
@@ -22,16 +27,15 @@ const InputField = (props) => {
   const [transaction, setTransaction] = useState({
     date: "",
     amount: "",
-    description: "",
     category: "",
-    wallet: "",
+    description: "",
     type: "",
+    wallet: "",
   });
 
   const handleInputChange = (e) => {
-    // console.log(e.target.value);
     const { name, value } = e.target;
-    console.log({ name, value });
+    // console.log({ name, value });
     setTransaction({ ...transaction, [name]: value });
   };
 
@@ -54,13 +58,22 @@ const InputField = (props) => {
     setTransaction(transaction);
   };
 
-  const categoryList = categories.map((elm, idx) => {
-    return (
-      <Option value={elm} key={idx}>
-        {elm}
-      </Option>
-    );
-  });
+  const categoryList =
+    type === "Income"
+      ? incomeCategories.map((elm, idx) => {
+          return (
+            <Option value={elm} key={idx}>
+              {elm}
+            </Option>
+          );
+        })
+      : expenseCategories.map((elm, idx) => {
+          return (
+            <Option value={elm} key={idx}>
+              {elm}
+            </Option>
+          );
+        });
 
   const resetForm = () => {
     setCategory("");
@@ -69,10 +82,10 @@ const InputField = (props) => {
     setTransaction({
       date: "",
       amount: "",
-      description: "",
+      type: "",
       category: "",
       wallet: "",
-      type: "",
+      description: "",
     });
   };
 
@@ -138,6 +151,12 @@ const InputField = (props) => {
             value={transaction.amount}
             onChange={handleInputChange}
           />
+          {(isNaN(transaction.amount) === true ||
+            Number(transaction.amount) < 0) && (
+            <div style={{ color: "#bd2560", fontSize: "0.95rem" }}>
+              Entered value is invalid. Please input the number.
+            </div>
+          )}
           <Input
             key="description"
             label="Description"
@@ -151,11 +170,21 @@ const InputField = (props) => {
             onChange={handleInputChange}
           />
           <Select
+            label="Type"
+            className="expense-select"
+            variant="standard"
+            color="deep-purple"
+            value={type}
+            style={{ borderBottom: "1px solid" }}
+            onChange={handleTypeChange}
+          >
+            {typeList}
+          </Select>
+          <Select
             label="Category"
             className="expense-select"
             variant="standard"
             color="deep-purple"
-            // value={transaction.category}
             value={category}
             style={{ borderBottom: "1px solid" }}
             onChange={handleCategoryChange}
@@ -173,17 +202,7 @@ const InputField = (props) => {
           >
             {walletList}
           </Select>
-          <Select
-            label="Type"
-            className="expense-select"
-            variant="standard"
-            color="deep-purple"
-            value={type}
-            style={{ borderBottom: "1px solid" }}
-            onChange={handleTypeChange}
-          >
-            {typeList}
-          </Select>
+
           <Button
             className="mx-auto px-4 py-3 btn-submit"
             style={{ fontSize: "0.85rem", textTransform: "capitalize" }}

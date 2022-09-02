@@ -5,7 +5,7 @@
     // justify-content: center;
     gap: 1.5rem;
     h3 {
-      color: #ffffff;
+      color: var(--active-color);
     }
   }
   &_list {
@@ -24,4 +24,25 @@
 }
 .btn-add-expense span {
   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-container_logo {
+    .btn-add-expense {
+      left: 50%;
+      transform: translateX(-50%);
+      /* width: 2.25rem;
+      height: 2.25rem; */
+    }
+    h3 {
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .btn-add-expense {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
 }

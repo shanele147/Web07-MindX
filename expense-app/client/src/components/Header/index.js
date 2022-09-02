@@ -7,6 +7,8 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
+import { useExpenseContext } from "../../contexts/ExpenseContext";
+import expenseAppService from "../../services";
 import InputField from "../InputField";
 import "./Header.scss";
 
@@ -14,6 +16,8 @@ const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
+
+  const { expenseType, transactionList } = useExpenseContext();
 
   useEffect(() => {
     window.addEventListener(
@@ -102,10 +106,10 @@ const Header = () => {
       </div>
       <MobileNav
         open={openNav}
-        className="mt-4 flex items-baseline justify-between mobile-nav"
+        className="flex items-baseline justify-between mobile-nav"
       >
         {navList}
-        <div className="nav-container_logo w-full md:w-1/5 flex flex-wrap justify-end">
+        <div className="nav-container_logo md:w-1/5 flex-col md:flex-row flex-wrap md:justify-end">
           <h3>Balance</h3>
           <IconButton
             className="btn-add-expense"
