@@ -1,8 +1,12 @@
 .nav-container {
-  background-color: #5853bc;
+  // background-color: #5853bc;
+  background-color: #746cfe;
+  box-shadow: 0 0 1rem 0 rgb(0 0 0 / 20%);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   &_logo {
     align-items: center;
-    // justify-content: center;
     gap: 1.5rem;
     h3 {
       color: var(--active-color);
@@ -12,7 +16,7 @@
     gap: 1.5rem;
   }
   svg {
-    color: #ffffff;
+    color: var(--white-color);
   }
 }
 .btn-add-expense {

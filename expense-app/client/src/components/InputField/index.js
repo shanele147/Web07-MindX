@@ -8,11 +8,13 @@ import {
   Dialog,
   DialogBody,
 } from "@material-tailwind/react";
+import CustomSelect from "../CustomSelect/index.js";
 import "../InputField/InputField.css";
 import "animate.css";
 
 const InputField = (props) => {
   const { open, handleOpen } = props;
+
   const {
     wallets,
     expenseCategories,
@@ -20,60 +22,42 @@ const InputField = (props) => {
     expenseType,
     onAddNewTransaction,
   } = useExpenseContext();
+  const [type, setType] = useState("");
   const [category, setCategory] = useState("");
   const [wallet, setWallet] = useState("");
-  const [type, setType] = useState("");
-
+  const [typeOption, setTypeOption] = useState([]);
   const [transaction, setTransaction] = useState({
     date: "",
     amount: "",
-    category: "",
     description: "",
-    type: "",
-    wallet: "",
+    type,
+    category,
+    wallet,
   });
+  const [selected, setSelected] = useState(typeOption[0]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // console.log({ name, value });
     setTransaction({ ...transaction, [name]: value });
   };
 
   const handleCategoryChange = (value) => {
-    // setCategory(value);
     transaction.category = value;
-    setCategory(value);
-    setTransaction(transaction);
-  };
-  const handleWalletChange = (value) => {
-    // setWallet(value);
-    transaction.wallet = value;
-    setWallet(value);
-    setTransaction(transaction);
-  };
-  const handleTypeChange = (value) => {
-    // setType(value);
-    transaction.type = value;
-    setType(value);
     setTransaction(transaction);
   };
 
-  const categoryList =
-    type === "Income"
-      ? incomeCategories.map((elm, idx) => {
-          return (
-            <Option value={elm} key={idx}>
-              {elm}
-            </Option>
-          );
-        })
-      : expenseCategories.map((elm, idx) => {
-          return (
-            <Option value={elm} key={idx}>
-              {elm}
-            </Option>
-          );
-        });
+  const handleWalletChange = (value) => {
+    transaction.wallet = value;
+    setTransaction(transaction);
+  };
+
+  const handleTypeChange = (value) => {
+    transaction.type = value;
+    setTransaction(transaction);
+    value === "Income"
+      ? setTypeOption(incomeCategories)
+      : setTypeOption(expenseCategories);
+  };
 
   const resetForm = () => {
     setCategory("");
@@ -89,11 +73,20 @@ const InputField = (props) => {
     });
   };
 
+  // console.log({ type, category, wallet });
   const onHandleAdd = () => {
-    // console.log(transaction);
     onAddNewTransaction(transaction);
     resetForm();
   };
+
+  // console.log(typeOption);
+  let categoryList = typeOption.map((elm, idx) => {
+    return (
+      <Option value={elm} key={idx}>
+        {elm}
+      </Option>
+    );
+  });
 
   const walletList = wallets.map((elm, idx) => {
     return (
@@ -174,9 +167,10 @@ const InputField = (props) => {
             className="expense-select"
             variant="standard"
             color="deep-purple"
-            value={type}
+            // value={transaction.type}
             style={{ borderBottom: "1px solid" }}
-            onChange={handleTypeChange}
+            // onChange={(value) => setType(value)}
+            onChange={(value) => handleTypeChange(value)}
           >
             {typeList}
           </Select>
@@ -185,9 +179,9 @@ const InputField = (props) => {
             className="expense-select"
             variant="standard"
             color="deep-purple"
-            value={category}
             style={{ borderBottom: "1px solid" }}
-            onChange={handleCategoryChange}
+            // onChange={(value) => setCategory(value)}
+            onChange={(value) => handleCategoryChange(value)}
           >
             {categoryList}
           </Select>
@@ -196,9 +190,10 @@ const InputField = (props) => {
             class="expense-select"
             variant="standard"
             color="deep-purple"
-            value={wallet}
+            // value={transaction.wallet}
             style={{ borderBottom: "1px solid" }}
-            onChange={handleWalletChange}
+            // onChange={(value) => setWallet(value)}
+            onChange={(value) => handleWalletChange(value)}
           >
             {walletList}
           </Select>

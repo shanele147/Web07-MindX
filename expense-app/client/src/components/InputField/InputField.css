@@ -41,18 +41,15 @@ select {
   background-color: transparent;
 }
 
-/* .peer:placeholder-shown ~ .peer-placeholder-shown\:text-sm,
-.text-sm {
-  left: 1rem;
-} */
 .btn-submit {
   font-size: 1rem;
   -webkit-box-align: center;
   align-items: center;
-  border: 1px solid #ae8cfa;
   border-radius: 9999px;
-  background-color: transparent;
-  color: #ae8cfa;
+  /* border: 1px solid #ae8cfa; */
+  /* background-color: transparent; */
+  background: linear-gradient(283deg, #ae8cfa, #746cfe);
+  color: #fefaff;
 }
 /* ::-webkit-calendar-picker-indicator {
   filter: invert(1);
@@ -60,13 +57,14 @@ select {
 input::-webkit-calendar-picker-indicator {
   filter: invert(0.6);
 }
-ul[role="listbox"] {
+/* ul[role="listbox"] {
   top: 0 !important;
-}
+} */
 
 .input-container div {
   min-width: auto;
 }
+
 @media screen and (max-width: 568px) {
   .tw-dialog {
     max-width: 80%;

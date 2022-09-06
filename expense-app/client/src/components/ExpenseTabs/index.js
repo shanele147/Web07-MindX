@@ -44,7 +44,7 @@ export default function ExpenseTabs() {
               <p
                 className={`category ${category
                   .toLowerCase()
-                  .replace(/ /g, "_")} text-base md:text-lg`}
+                  .replace(/ /g, "_")} text-sm md:text-lg`}
               >
                 {category}
               </p>

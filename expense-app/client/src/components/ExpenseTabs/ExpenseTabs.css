@@ -47,14 +47,74 @@ p.description {
 
 /* style of category text */
 p.food {
-  color: #f5be57;
+  color: var(--food-category);
 }
 p.food::before {
-  background-color: #f5be57;
+  background-color: var(--food-category);
 }
 p.shopping {
-  color: #f47b7c;
+  color: var(--beverage-category);
 }
 p.shopping::before {
-  background-color: #f47b7c;
+  background-color: var(--beverage-category);
+}
+p.pet {
+  color: var(--pet-category);
+}
+p.pet::before {
+  background-color: var(--pet-category);
+}
+p.phone {
+  color: var(--phone-category);
+}
+p.phone::before {
+  background-color: var(--phone-category);
+}
+p.household {
+  color: var(--household-category);
+}
+p.household::before {
+  background-color: var(--household-category);
+}
+p.bills {
+  color: var(--bills-category);
+}
+p.bills::before {
+  background-color: var(--bills-category);
+}
+p.education {
+  color: var(--education-category);
+}
+p.education::before {
+  background-color: var(--education-category);
+}
+p.entertainment {
+  color: var(--entertainment-category);
+}
+p.entertainment::before {
+  background-color: var(--entertainment-category);
+}
+p.heath {
+  color: var(--heath-category);
+}
+p.heath::before {
+  background-color: var(--heath-category);
+}
+p.travel {
+  color: var(--travel-category);
+}
+p.travel::before {
+  background-color: var(--travel-category);
+}
+p.transportation {
+  color: var(--transportation-category);
+}
+p.transportation::before {
+  background-color: var(--transportation-category);
+}
+p.others {
+  color: var(--other-category);
+}
+p.others::before {
+  background-color: var(--other-category);
 }

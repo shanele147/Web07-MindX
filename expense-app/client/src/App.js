@@ -66,7 +66,6 @@ function App() {
     "Awards",
     "Bonus",
     "Lottery",
-    "Phone",
     "Investment",
   ]);
   const [expenseType, setExpenseType] = useState(["Income", "Expense"]);

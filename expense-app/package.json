@@ -12,6 +12,7 @@
   "author": "Ngoc Le",
   "license": "ISC",
   "dependencies": {
+    "@heroicons/react": "^2.0.10",
     "axios": "^0.27.2",
     "concurrently": "^7.3.0",
     "cors": "^2.8.5",
