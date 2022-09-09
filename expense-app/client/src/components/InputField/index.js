@@ -14,7 +14,6 @@ import "animate.css";
 
 const InputField = (props) => {
   const { open, handleOpen } = props;
-
   const {
     wallets,
     expenseCategories,
@@ -22,10 +21,13 @@ const InputField = (props) => {
     expenseType,
     onAddNewTransaction,
   } = useExpenseContext();
+  const [isDateValid, setDateValidity] = useState(true);
+  const [isAmountValid, setAmountValidity] = useState(true);
+
   const [type, setType] = useState("");
   const [category, setCategory] = useState("");
   const [wallet, setWallet] = useState("");
-  const [typeOption, setTypeOption] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [transaction, setTransaction] = useState({
     date: "",
     amount: "",
@@ -34,29 +36,32 @@ const InputField = (props) => {
     category,
     wallet,
   });
-  const [selected, setSelected] = useState(typeOption[0]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTransaction({ ...transaction, [name]: value });
   };
 
-  const handleCategoryChange = (value) => {
-    transaction.category = value;
-    setTransaction(transaction);
-  };
-
   const handleWalletChange = (value) => {
     transaction.wallet = value;
-    setTransaction(transaction);
+    setTransaction({ ...transaction, ["wallet"]: value });
+  };
+
+  const handleCategoryChange = (value) => {
+    transaction.category = value;
+    setTransaction({ ...transaction, ["category"]: value });
   };
 
   const handleTypeChange = (value) => {
     transaction.type = value;
-    setTransaction(transaction);
-    value === "Income"
-      ? setTypeOption(incomeCategories)
-      : setTypeOption(expenseCategories);
+    setTransaction({ ...transaction, ["type"]: value });
+    transaction.type === "Income"
+      ? setCategories(incomeCategories)
+      : setCategories(expenseCategories);
+
+    if (categories.indexOf(category) === -1) {
+      setCategory(categories[0]);
+    }
   };
 
   const resetForm = () => {
@@ -73,14 +78,25 @@ const InputField = (props) => {
     });
   };
 
-  // console.log({ type, category, wallet });
-  const onHandleAdd = () => {
+  console.log(transaction.amount ? transaction.amount : null);
+  const formValidate = () => {
+    if (transaction.date && transaction.amount) {
+      setDateValidity(true);
+      setAmountValidity(true);
+      return true;
+    }
+    setDateValidity(false);
+    setAmountValidity(false);
+    return false;
+  };
+
+  const onHandleAdd = (e) => {
+    e.preventDefault();
     onAddNewTransaction(transaction);
     resetForm();
   };
 
-  // console.log(typeOption);
-  let categoryList = typeOption.map((elm, idx) => {
+  const categoryList = categories.map((elm, idx) => {
     return (
       <Option value={elm} key={idx}>
         {elm}
@@ -107,7 +123,7 @@ const InputField = (props) => {
   return (
     <div className={`flex flex-col gap-6 md:gap-8 mx-auto animate__animated`}>
       <Dialog
-        className="tw-dialog"
+        className="tw-dialog overflow-visible"
         size="lg"
         open={open}
         handler={handleOpen}
@@ -117,94 +133,100 @@ const InputField = (props) => {
         }}
         style={{ backgroundColor: "transparent" }}
       >
-        <DialogBody
-          className={`input-container flex flex-col gap-6 md:gap-8 mx-auto animate__animated py-4 md:py-12`}
-        >
-          <Input
-            key="date"
-            label="Date"
-            name="date"
-            type="date"
-            className="expense-input"
-            color="deep-purple"
-            size="lg"
-            variant="standard"
-            value={transaction.date}
-            onChange={handleInputChange}
-          />
-          <Input
-            key="amount"
-            label="Amount"
-            name="amount"
-            type="text"
-            className="expense-input"
-            color="deep-purple"
-            size="lg"
-            variant="standard"
-            value={transaction.amount}
-            onChange={handleInputChange}
-          />
-          {(isNaN(transaction.amount) === true ||
-            Number(transaction.amount) < 0) && (
-            <div style={{ color: "#bd2560", fontSize: "0.95rem" }}>
-              Entered value is invalid. Please input the number.
-            </div>
-          )}
-          <Input
-            key="description"
-            label="Description"
-            name="description"
-            type="text"
-            color="deep-purple"
-            size="lg"
-            className="expense-input"
-            variant="standard"
-            value={transaction.description}
-            onChange={handleInputChange}
-          />
-          <Select
-            label="Type"
-            className="expense-select"
-            variant="standard"
-            color="deep-purple"
-            // value={transaction.type}
-            style={{ borderBottom: "1px solid" }}
-            // onChange={(value) => setType(value)}
-            onChange={(value) => handleTypeChange(value)}
+        <DialogBody>
+          <form
+            onSubmit={onHandleAdd}
+            className={`form-container w-full flex flex-col gap-6 md:gap-8 mx-auto animate__animated py-4 md:py-12 px-6`}
           >
-            {typeList}
-          </Select>
-          <Select
-            label="Category"
-            className="expense-select"
-            variant="standard"
-            color="deep-purple"
-            style={{ borderBottom: "1px solid" }}
-            // onChange={(value) => setCategory(value)}
-            onChange={(value) => handleCategoryChange(value)}
-          >
-            {categoryList}
-          </Select>
-          <Select
-            label="Wallet"
-            class="expense-select"
-            variant="standard"
-            color="deep-purple"
-            // value={transaction.wallet}
-            style={{ borderBottom: "1px solid" }}
-            // onChange={(value) => setWallet(value)}
-            onChange={(value) => handleWalletChange(value)}
-          >
-            {walletList}
-          </Select>
+            <Input
+              key="date"
+              label="Date"
+              name="date"
+              type="date"
+              className="expense-input"
+              color="deep-purple"
+              size="lg"
+              variant="standard"
+              required="true"
+              value={transaction.date}
+              onChange={handleInputChange}
+            />
+            <Input
+              key="amount"
+              label="Amount"
+              name="amount"
+              type="text"
+              className="expense-input"
+              color="deep-purple"
+              size="lg"
+              variant="standard"
+              required="true"
+              value={transaction.amount}
+              onChange={handleInputChange}
+            />
+            {(isNaN(transaction.amount) === true ||
+              Number(transaction.amount) < 0) && (
+              <div style={{ color: "#bd2560", fontSize: "0.95rem" }}>
+                Entered value is invalid. Please input the number.
+              </div>
+            )}
+            <Input
+              key="description"
+              label="Description"
+              name="description"
+              type="text"
+              color="deep-purple"
+              size="lg"
+              className="expense-input"
+              variant="standard"
+              required="true"
+              value={transaction.description}
+              onChange={handleInputChange}
+            />
+            <Select
+              label="Type"
+              className="expense-select"
+              variant="standard"
+              color="deep-purple"
+              value={transaction.type}
+              style={{ borderBottom: "1px solid" }}
+              onChange={handleTypeChange}
+            >
+              {typeList}
+            </Select>
 
-          <Button
-            className="mx-auto px-4 py-3 btn-submit"
-            style={{ fontSize: "0.85rem", textTransform: "capitalize" }}
-            onClick={() => onHandleAdd()}
-          >
-            Add new transaction
-          </Button>
+            <Select
+              label="Category"
+              className="expense-select"
+              variant="standard"
+              color="deep-purple"
+              style={{ borderBottom: "1px solid" }}
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              {categoryList}
+            </Select>
+            <Select
+              label="Wallet"
+              className="expense-select"
+              variant="standard"
+              color="deep-purple"
+              style={{ borderBottom: "1px solid" }}
+              value={transaction.wallet}
+              onChange={handleWalletChange}
+            >
+              {walletList}
+            </Select>
+
+            <Button
+              className="mx-auto px-4 py-3 btn-submit"
+              type="submit"
+              disabled={isDateValid && isAmountValid ? false : true}
+              style={{ fontSize: "0.85rem", textTransform: "capitalize" }}
+            >
+              Add new transaction
+            </Button>
+          </form>
         </DialogBody>
       </Dialog>
     </div>

@@ -11,7 +11,7 @@ const HomePage = (props) => {
 
   return (
     <>
-      <div className="container mx-auto page-container py-12 px-4 md:py-20 md:px-8">
+      <div className="container mx-auto page-container py-8 px-4 md:py-20 md:px-8">
         <ExpenseTabs />
       </div>
       <InputField open={open} handleOpen={handleOpen} />

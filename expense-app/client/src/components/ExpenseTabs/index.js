@@ -29,7 +29,7 @@ export default function ExpenseTabs() {
     incomeBasedOnCategory.push(getTotal(category, incomeList));
   }
 
-  console.log({ expenseBasedOnCategory, incomeBasedOnCategory });
+  // console.log({ expenseBasedOnCategory, incomeBasedOnCategory });
 
   const renderDataList = (arr) => {
     let htmlList = arr.map((elm, idx) => {
@@ -230,6 +230,7 @@ export default function ExpenseTabs() {
         {tabsData.map((tab, idx) => {
           return (
             <div
+              key={idx}
               className={`w-full md:w-2/3 lg:w-1/2 py-4 px-4 md:px-6 mx-auto tab-content animate__animated animate__slow ${
                 idx === activeTabIndex ? "animate__fadeIn" : "animate__fadeOut"
               }`}

@@ -14,7 +14,7 @@ function App() {
   const data = [
     {
       date: "2022-08-01",
-      amount: "600",
+      amount: "1000",
       category: "Bonus",
       description: "July overtime working",
       type: "Income",
