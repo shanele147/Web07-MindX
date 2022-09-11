@@ -11,30 +11,81 @@ import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header";
 
 function App() {
+  const data = [
+    {
+      date: "2022-08-01",
+      amount: "1000",
+      category: "Bonus",
+      description: "July overtime working",
+      type: "Income",
+      wallet: "Bank",
+    },
+    {
+      date: "2022-08-13",
+      amount: "400",
+      category: "Food",
+      description: "Dinner with friends",
+      type: "Expense",
+      wallet: "Bank",
+    },
+    {
+      date: "2022-08-02",
+      amount: "150",
+      category: "Shopping",
+      description: "Weekend super market",
+      type: "Expense",
+      wallet: "Bank",
+    },
+    {
+      date: "2022-08-18",
+      amount: "50",
+      category: "Food",
+      description: "Hangout weekend",
+      type: "Expense",
+      wallet: "Bank",
+    },
+  ];
   const [wallets, setWallets] = useState(["Bank", "Cash"]);
-  const [categories, setCategory] = useState([
+  const [expenseCategories, setExpenseCategory] = useState([
     "Beverage",
     "Food",
     "Shopping",
     "Pet",
     "Phone",
     "Household",
+    "Bills",
+    "Education",
+    "Entertainment",
+    "Health",
+    "Travel",
+    "Transportation",
+    "Others",
+  ]);
+  const [incomeCategories, setIncomeCategory] = useState([
+    "Salary",
+    "Awards",
+    "Bonus",
+    "Lottery",
+    "Investment",
   ]);
   const [expenseType, setExpenseType] = useState(["Income", "Expense"]);
-  const [transactionList, setTransactionList] = useState([]);
+  const [transactionList, setTransactionList] = useState(data);
 
   const onAddNewTransaction = (newTransaction) => {
-    console.log(newTransaction);
-    /* let newList = [];
-    newList.push(newTransaction); */
-    // transactionList.push(newTransaction);
     setTransactionList([...transactionList, newTransaction]);
   };
 
   return (
     <Browser>
       <ExpenseContext.Provider
-        value={{ wallets, categories, expenseType, onAddNewTransaction }}
+        value={{
+          wallets,
+          expenseCategories,
+          incomeCategories,
+          expenseType,
+          transactionList,
+          onAddNewTransaction,
+        }}
       >
         <Header></Header>
         <Routes>

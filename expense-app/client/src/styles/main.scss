@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,200;0,300;0,400;0,600;1,200&family=Poppins:wght@200;400;700&display=swap");
+:root {
+  --white-color: #fefcff;
+  --primary-color: #0f1724;
+  --secondary-color: #a7a2f3a1;
+  --secondary-color-2: #ae8cfa;
+  --active-color: #ffaf1a;
+  --text-color: #000000;
+  --food-category: rgb(244, 123, 124);
+  --beverage-category: rgb(46, 153, 207);
+  --shopping-category: rgb(245, 165, 0);
+  --pet-category: rgb(75, 192, 200);
+  --phone-category: rgb(153, 102, 255);
+  --household-category: rgb(165, 49, 9);
+  --bills-category: rgb(243, 178, 125);
+  --education-category: rgb(140, 222, 246);
+  --entertainment-category: rgb(72, 72, 222);
+  --heath-category: rgb(130, 206, 106);
+  --travel-category: rgb(227, 46, 177);
+  --transportation-category: rgb(216, 213, 93);
+  --others-category: rgb(68, 107, 20);
+}
 
 * {
   margin: 0;
@@ -12,13 +33,6 @@
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   font-weight: 400;
-  font-size: 16px;
-}
-
-:root {
-  --white-color: #ffffff;
-  --primary-color: #0f1724;
-  --secondary-color: #0a0d14;
-  --active-color: #ae8cfa;
-  --text-color: #000000;
+  font-size: 1.1rem;
+  // color: var(--white-color);
 }
