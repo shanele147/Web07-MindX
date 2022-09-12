@@ -1,3 +1,3 @@
 #Web-07 projects
 
-This repo is using for all MindX project
+This repo is from company mac
