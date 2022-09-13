@@ -11,11 +11,15 @@ const expenseAppService = {
       style: "currency",
       currency: `${currency}`,
     });
-    return formatCurrency.format(amount);
+    // return a string => use the replace() method
+    return formatCurrency.format(amount).replace(/(\.|,)00$/g, "");
   },
   validateNumberField: (number) => {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
     return numberRegEx.test(String(number).toLowerCase());
+  },
+  textToLowerCase: (str) => {
+    return str.toLowerCase().replace(/ /g, "_");
   },
 };
 

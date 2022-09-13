@@ -6,19 +6,26 @@
   --secondary-color-2: #ae8cfa;
   --active-color: #ffaf1a;
   --text-color: #000000;
-  --food-category: rgb(244, 123, 124);
-  --beverage-category: rgb(46, 153, 207);
+  --food-category: rgb(240, 132, 132);
+  --beverage-category: rgb(10, 75, 107);
   --shopping-category: rgb(245, 165, 0);
-  --pet-category: rgb(75, 192, 200);
+  --pet-category: rgb(103, 231, 238);
   --phone-category: rgb(153, 102, 255);
-  --household-category: rgb(165, 49, 9);
-  --bills-category: rgb(243, 178, 125);
-  --education-category: rgb(140, 222, 246);
-  --entertainment-category: rgb(72, 72, 222);
-  --heath-category: rgb(130, 206, 106);
+  --household-category: rgb(238, 46, 46);
+  --bills-category: rgb(31, 71, 192);
+  --education-category: rgb(50, 30, 116);
+  --entertainment-category: rgb(2, 240, 192);
+  --health-category: rgb(134, 245, 119);
   --travel-category: rgb(227, 46, 177);
   --transportation-category: rgb(216, 213, 93);
-  --others-category: rgb(68, 107, 20);
+  --expense-others-category: rgb(187, 225, 131);
+  // income color:
+  --salary-category: rgb(46, 153, 207);
+  --awards-category: rgb(244, 123, 124);
+  --bonus-category: rgb(245, 165, 0);
+  --lottery-category: rgb(75, 192, 200);
+  --investment-category: rgb(153, 102, 255);
+  --income-others-category: rgb(165, 49, 9);
 }
 
 * {

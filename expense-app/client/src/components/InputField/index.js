@@ -8,7 +8,6 @@ import {
   Dialog,
   DialogBody,
 } from "@material-tailwind/react";
-import CustomSelect from "../CustomSelect/index.js";
 import "../InputField/InputField.css";
 import "animate.css";
 
@@ -20,9 +19,8 @@ const InputField = (props) => {
     incomeCategories,
     expenseType,
     onAddNewTransaction,
+    handleTabIndex,
   } = useExpenseContext();
-  const [isDateValid, setDateValidity] = useState(true);
-  const [isAmountValid, setAmountValidity] = useState(true);
 
   const [type, setType] = useState("");
   const [category, setCategory] = useState("");
@@ -78,27 +76,12 @@ const InputField = (props) => {
     });
   };
 
-  console.log(transaction.amount ? transaction.amount : null);
-  const formValidate = () => {
-    if (transaction.date && transaction.amount) {
-      setDateValidity(true);
-      setAmountValidity(true);
-      return true;
-    }
-    setDateValidity(false);
-    setAmountValidity(false);
-    return false;
-  };
-
   const onHandleAdd = (e) => {
     e.preventDefault();
     onAddNewTransaction(transaction);
-
     handleOpen(false);
-    const isIncome = transaction.type === 'Income';
+    transaction.type === "Income" ? handleTabIndex(0) : handleTabIndex(1);
     resetForm();
-    isIncome ? props.onHandleUpdateTab(0) : props.onHandleUpdateTab(1);
-
   };
 
   const categoryList = categories.map((elm, idx) => {
@@ -130,7 +113,9 @@ const InputField = (props) => {
       <Dialog
         className="tw-dialog overflow-visible"
         size="lg"
-        open={open}
+        open={
+          open ? true : false
+        } /* use conditional function to make sure the props is boolean instead of object - React warning */
         handler={handleOpen}
         animate={{
           mount: { scale: 1, y: 0 },
@@ -141,7 +126,7 @@ const InputField = (props) => {
         <DialogBody>
           <form
             onSubmit={onHandleAdd}
-            className={`form-container w-full flex flex-col gap-6 md:gap-8 mx-auto animate__animated py-4 md:py-12 px-6`}
+            className={`form-container w-full flex flex-col gap-6 md:gap-8 mx-auto animate__animated py-4 md:py-12 px-3 md:px-6`}
           >
             <Input
               key="date"
@@ -152,7 +137,7 @@ const InputField = (props) => {
               color="deep-purple"
               size="lg"
               variant="standard"
-              required="true"
+              required={true}
               value={transaction.date}
               onChange={handleInputChange}
             />
@@ -165,16 +150,16 @@ const InputField = (props) => {
               color="deep-purple"
               size="lg"
               variant="standard"
-              required="true"
+              required={true}
               value={transaction.amount}
               onChange={handleInputChange}
             />
             {(isNaN(transaction.amount) === true ||
               Number(transaction.amount) < 0) && (
-                <div style={{ color: "#bd2560", fontSize: "0.95rem" }}>
-                  Entered value is invalid. Please input the number.
-                </div>
-              )}
+              <div style={{ color: "#bd2560", fontSize: "0.95rem" }}>
+                Entered value is invalid. Please input the number.
+              </div>
+            )}
             <Input
               key="description"
               label="Description"
@@ -184,7 +169,7 @@ const InputField = (props) => {
               size="lg"
               className="expense-input"
               variant="standard"
-              required="true"
+              required={true}
               value={transaction.description}
               onChange={handleInputChange}
             />

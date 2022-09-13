@@ -15,9 +15,8 @@ import "./Header.scss";
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
-
-  const { expenseType, transactionList } = useExpenseContext();
+  const handleOpen = (value) => setOpen(value);
+  const { balance, expenseType, transactionList } = useExpenseContext();
 
   useEffect(() => {
     window.addEventListener(
@@ -56,10 +55,14 @@ const Header = () => {
       >
         <div className="container mx-auto flex items-center justify-between ">
           <div className="hidden md:block">{navList}</div>
-          <div className="hidden nav-container_logo w-full md:w-1/4 md:flex lg:justify-center items-center md:justify-end md:gap-2 lg:gap-6">
+          <div className="hidden nav-container_logo w-full md:w-2/5 md:flex items-center md:justify-end md:gap-2 lg:gap-6">
             <div className="flex flex-wrap justify-around items-baseline">
-              <h3 className="md:text-lg lg:text-xl">Balance:&nbsp;</h3>
-              <h3 className="balance">0</h3>
+              <h3 className="text-sm md:text-base lg:text-xl">
+                Balance:&nbsp;
+              </h3>
+              <h3 className="balance">
+                {expenseAppService.convertCurrency(balance, "USD")}
+              </h3>
             </div>
 
             <IconButton
@@ -114,9 +117,7 @@ const Header = () => {
           className="flex items-baseline justify-between mobile-nav"
         >
           {navList}
-          <div className="nav-container_logo sm:w-1/5 flex-col sm:flex-row flex-wrap sm:justify-end">
-            {/* <h3 className="text-base">Balance</h3> */}
-          </div>
+          <div className="nav-container_logo sm:w-1/5 flex-col sm:flex-row flex-wrap sm:justify-end"></div>
         </MobileNav>
         <InputField open={open} handleOpen={handleOpen} />
       </Navbar>

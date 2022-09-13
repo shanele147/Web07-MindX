@@ -20,7 +20,6 @@
 .tab-content ul {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
 }
 .animate__fadeOut {
   visibility: hidden;
@@ -45,7 +44,7 @@ p.description {
   color: #a7a2f3a1;
 }
 
-/* style of category text */
+/* style of expense category text */
 p.expense-beverage {
   color: var(--beverage-category);
 }
@@ -100,11 +99,11 @@ p.expense-entertainment {
 p.expense-entertainment::before {
   background-color: var(--entertainment-category);
 }
-p.expense-heath {
-  color: var(--heath-category);
+p.expense-health {
+  color: var(--health-category);
 }
-p.expense-heath::before {
-  background-color: var(--heath-category);
+p.expense-health::before {
+  background-color: var(--health-category);
 }
 p.expense-travel {
   color: var(--travel-category);
@@ -119,8 +118,52 @@ p.expense-transportation::before {
   background-color: var(--transportation-category);
 }
 p.expense-others {
-  color: var(--other-category);
+  color: var(--expense-others-category);
 }
 p.expense-others::before {
-  background-color: var(--other-category);
+  background-color: var(--expense-others-category);
+}
+
+/* style of income category text */
+p.income-salary {
+  color: var(--salary-category);
+}
+p.income-salary::before {
+  background-color: var(--salary-category);
+}
+p.income-awards {
+  color: var(--awards-category);
+}
+p.income-awards::before {
+  background-color: var(--awards-category);
+}
+p.income-bonus {
+  color: var(--bonus-category);
+}
+p.income-bonus::before {
+  background-color: var(--bonus-category);
+}
+p.income-lottery {
+  color: var(--lottery-category);
+}
+p.income-lottery::before {
+  background-color: var(--lottery-category);
+}
+p.income-investment {
+  color: var(--investment-category);
+}
+p.income-investment::before {
+  background-color: var(--investment-category);
+}
+p.income-others {
+  color: var(--income-others-category);
+}
+p.income-others::before {
+  background-color: var(--income-others-category);
+}
+@media screen and (max-width: 568px) {
+  p.category::before {
+    height: 2rem;
+    top: 0.1rem;
+  }
 }
