@@ -18,6 +18,7 @@ const InputField = (props) => {
     expenseCategories,
     incomeCategories,
     expenseType,
+    transactionList,
     onAddNewTransaction,
     handleTabIndex,
   } = useExpenseContext();
@@ -78,6 +79,9 @@ const InputField = (props) => {
 
   const onHandleAdd = (e) => {
     e.preventDefault();
+    const newId = transactionList.length + 1;
+    transaction.id = newId;
+    // onAddNewTransaction({ ...transaction, id: newId });
     onAddNewTransaction(transaction);
     handleOpen(false);
     transaction.type === "Income" ? handleTabIndex(0) : handleTabIndex(1);

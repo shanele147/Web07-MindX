@@ -10,17 +10,43 @@ export const useChartData = () => {
     expenseType,
     incomeList,
     expenseList,
+    transactionList,
     expenseBasedOnCategory,
     incomeBasedOnCategory,
+    onDeleteTransaction,
   } = useExpenseContext();
 
   // RENDER TAB CONTENT FROM ARRAYS OF EXPENSE
-  const expenses = expenseList.map((elm, idx) => (
-    <TabItem transaction={elm} id={idx} />
-  ));
-  const incomes = incomeList.map((elm, idx) => (
-    <TabItem transaction={elm} id={idx} />
-  ));
+  const expenses =
+    expenseList.length > 0 ? (
+      expenseList.map((elm, idx) => (
+        <TabItem
+          transaction={elm}
+          id={elm.id}
+          onDeleteTransaction={onDeleteTransaction}
+          transactionList={transactionList}
+        />
+      ))
+    ) : (
+      <h3 style={{ color: "var(--active-color)" }}>
+        No transaction here. Please add some transactions to try this app
+      </h3>
+    );
+  const incomes =
+    incomeList.length > 0 ? (
+      incomeList.map((elm, idx) => (
+        <TabItem
+          transaction={elm}
+          id={elm.id}
+          onDeleteTransaction={onDeleteTransaction}
+          transactionList={transactionList}
+        />
+      ))
+    ) : (
+      <h3 style={{ color: "var(--active-color)" }}>
+        No income record here. Please add some transactions to try this app
+      </h3>
+    );
 
   const tabsData = [
     {

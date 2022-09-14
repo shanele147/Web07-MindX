@@ -3,7 +3,7 @@ import expenseAppService from "../../services";
 import { MdDeleteForever } from "react-icons/md";
 
 const TabItem = (props) => {
-  const { transaction, id } = props;
+  const { transactionList, transaction, id, onDeleteTransaction } = props;
   const { amount, category, description, type } = transaction;
   return (
     <ul
@@ -24,7 +24,10 @@ const TabItem = (props) => {
         <p className="amount text-base md:text-lg">
           {expenseAppService.convertCurrency(amount, "USD")}
         </p>
-        <MdDeleteForever className="text-xl md:text-2xl" />
+        <MdDeleteForever
+          className="text-xl md:text-2xl"
+          onClick={() => onDeleteTransaction(id)}
+        />
       </li>
     </ul>
   );

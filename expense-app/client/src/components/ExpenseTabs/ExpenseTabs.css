@@ -1,3 +1,6 @@
+svg {
+  cursor: pointer;
+}
 .tab-container {
   color: #ffffff;
 }
@@ -6,7 +9,9 @@
 }
 .tab-content {
   position: absolute;
-  /* width: 40%; */
+}
+.tab-content svg {
+  color: var(--active-color);
 }
 
 .active-border {

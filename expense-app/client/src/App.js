@@ -11,6 +11,7 @@ import Header from "./components/Header";
 function App() {
   const data = [
     {
+      id: 1,
       date: "2022-08-01",
       amount: "1000",
       category: "Bonus",
@@ -19,6 +20,7 @@ function App() {
       wallet: "Bank",
     },
     {
+      id: 2,
       date: "2022-08-13",
       amount: "400",
       category: "Food",
@@ -27,6 +29,7 @@ function App() {
       wallet: "Bank",
     },
     {
+      id: 3,
       date: "2022-08-02",
       amount: "150",
       category: "Shopping",
@@ -35,6 +38,7 @@ function App() {
       wallet: "Bank",
     },
     {
+      id: 4,
       date: "2022-08-18",
       amount: "50",
       category: "Food",
@@ -106,6 +110,13 @@ function App() {
     setTransactionList([...transactionList, newTransaction]);
   };
 
+  const onDeleteTransaction = (idx) => {
+    const filteredTransaction = transactionList.filter(
+      (transaction) => transaction.id !== idx
+    );
+    setTransactionList(filteredTransaction);
+  };
+
   useEffect(() => {
     setBalance(incomeTotalAmount - expenseTotalAmount);
   }, [transactionList]);
@@ -125,6 +136,7 @@ function App() {
           expenseBasedOnCategory,
           incomeBasedOnCategory,
           onAddNewTransaction,
+          onDeleteTransaction,
           activeTabIndex,
           handleTabIndex,
         }}

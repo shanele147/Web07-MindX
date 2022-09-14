@@ -18,8 +18,6 @@ router.get("/", (req, res) => {
   });
 });
 
-
-
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   let student = students.find((elm) => elm.id === id);
@@ -86,8 +84,8 @@ router.delete("/:id", (req, res) => {
     });
   }
 
-  const filtedStudent = students.filter((student) => student.id !== id);
-  students = filtedStudent;
+  const filteredStudent = students.filter((student) => student.id !== id);
+  students = filteredStudent;
 
   res.json({
     msg: "Delete student successfully",
