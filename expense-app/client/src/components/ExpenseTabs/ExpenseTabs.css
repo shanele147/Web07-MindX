@@ -166,6 +166,12 @@ p.income-others {
 p.income-others::before {
   background-color: var(--income-others-category);
 }
+
+@media screen and (max-width: 768px){
+  .tab-content svg {
+    font-size: 1.4rem ;
+  }
+}
 @media screen and (max-width: 568px) {
   p.category::before {
     height: 2rem;

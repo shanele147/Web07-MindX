@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputField from "../../components/InputField";
+import AddingForm from "../../components/AddingForm";
 import ExpenseTabs from "../../components/ExpenseTabs";
 import { Button, IconButton } from "@material-tailwind/react";
 /* style */

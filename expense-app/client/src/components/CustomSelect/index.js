@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../InputField/InputField.css";
+import "../AddingForm/AddingForm.css";
 
 const CustomSelect = (props) => {
   const { categories, handleCategoryChange, selected } = props;

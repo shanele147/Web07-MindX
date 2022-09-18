@@ -1,6 +1,7 @@
 import React from "react";
 import { useExpenseContext } from "../contexts/ExpenseContext";
 import TabItem from "../components/ExpenseTabs/TabItem.js";
+import { chartColors } from "../utils/contants";
 
 // CUSTOM HOOK
 export const useChartData = () => {
@@ -14,6 +15,7 @@ export const useChartData = () => {
     expenseBasedOnCategory,
     incomeBasedOnCategory,
     onDeleteTransaction,
+    onEditTransaction,
   } = useExpenseContext();
 
   // RENDER TAB CONTENT FROM ARRAYS OF EXPENSE
@@ -24,6 +26,7 @@ export const useChartData = () => {
           transaction={elm}
           id={elm.id}
           onDeleteTransaction={onDeleteTransaction}
+          onEditTransaction={onEditTransaction}
           transactionList={transactionList}
         />
       ))
@@ -40,6 +43,7 @@ export const useChartData = () => {
           id={elm.id}
           onDeleteTransaction={onDeleteTransaction}
           transactionList={transactionList}
+          onEditTransaction={onEditTransaction}
         />
       ))
     ) : (
@@ -58,37 +62,8 @@ export const useChartData = () => {
           {
             label: `% of ${expenseType[0]}`,
             data: incomeBasedOnCategory,
-            backgroundColor: [
-              "rgb(46, 153, 207, 0.2)",
-              "rgb(244, 123, 124,0.2)",
-              "rgba(245, 165, 0, 0.3)",
-              "rgba(75, 192, 200, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(165, 49, 9, 0.2)",
-              "rgb(243, 178, 125, 0.2)",
-              "rgb(140, 222, 246, 0.2)",
-              "rgb(72, 72, 222, 0.2)",
-              "rgb(130, 206, 106, 0.2)",
-              "rgb(227, 46, 177, 0.2)",
-              "rgb(216, 213, 93, 0.2)",
-              "rgb(68, 107, 20, 0.8)",
-            ],
-            borderColor: [
-              "rgb(46, 153, 207, 0.75)",
-              "rgb(244, 123, 124, 0.75)",
-              "rgba(245, 165, 0, 0.75)",
-              "rgba(75, 192, 200, 0.75)",
-              "rgba(153, 102, 255, 0.75)",
-              "rgba(165, 49, 9, 0.75)",
-              "rgb(243, 178, 125, 0.75)",
-              "rgb(140, 222, 246, 0.75)",
-              "rgb(72, 72, 222, 0.75)",
-              "rgb(130, 206, 106, 0.75)",
-              "rgb(227, 46, 177, 0.75)",
-              "rgb(216, 213, 93, 0.75)",
-              "rgb(68, 107, 20, 0.75)",
-            ],
-
+            backgroundColor: chartColors.backgroundColor,
+            borderColor: chartColors.borderColor,
             borderWidth: 1,
           },
         ],
@@ -103,37 +78,8 @@ export const useChartData = () => {
           {
             label: `% of ${expenseType[1]}`,
             data: expenseBasedOnCategory,
-            backgroundColor: [
-              "rgb(46, 153, 207, 0.2)",
-              "rgb(244, 123, 124,0.2)",
-              "rgba(245, 165, 0, 0.3)",
-              "rgba(75, 192, 200, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(165, 49, 9, 0.2)",
-              "rgb(243, 178, 125, 0.2)",
-              "rgb(140, 222, 246, 0.2)",
-              "rgb(72, 72, 222, 0.2)",
-              "rgb(130, 206, 106, 0.2)",
-              "rgb(227, 46, 177, 0.2)",
-              "rgb(216, 213, 93, 0.2)",
-              "rgb(68, 107, 20, 0.3)",
-            ],
-            borderColor: [
-              "rgb(46, 153, 207, 0.75)",
-              "rgb(244, 123, 124, 0.75)",
-              "rgba(245, 165, 0, 0.75)",
-              "rgba(75, 192, 200, 0.75)",
-              "rgba(153, 102, 255, 0.75)",
-              "rgba(165, 49, 9, 0.75)",
-              "rgb(243, 178, 125, 0.75)",
-              "rgb(140, 222, 246, 0.75)",
-              "rgb(72, 72, 222, 0.75)",
-              "rgb(130, 206, 106, 0.75)",
-              "rgb(227, 46, 177, 0.75)",
-              "rgb(216, 213, 93, 0.75)",
-              "rgb(68, 107, 20, 0.9)",
-            ],
-
+            backgroundColor: chartColors.backgroundColor,
+            borderColor: chartColors.borderColor,
             hoverOffset: 0,
           },
         ],

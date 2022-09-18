@@ -1,12 +1,16 @@
-import "./App.css";
-import "./styles/main.scss";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
+
 import { ExpenseContext } from "./contexts/ExpenseContext";
 
 // COMPONENTS
 import HomePage from "./pages/HomePage/HomePage";
 import Header from "./components/Header";
+
+import "./App.css";
+import "./styles/main.scss";
+
+import { EXPENSE, INCOME } from "./utils/contants";
 
 function App() {
   const data = [
@@ -16,7 +20,7 @@ function App() {
       amount: "1000",
       category: "Bonus",
       description: "July overtime working",
-      type: "Income",
+      type: INCOME,
       wallet: "Bank",
     },
     {
@@ -25,7 +29,7 @@ function App() {
       amount: "400",
       category: "Food",
       description: "Dinner with friends",
-      type: "Expense",
+      type: EXPENSE,
       wallet: "Bank",
     },
     {
@@ -34,7 +38,7 @@ function App() {
       amount: "150",
       category: "Shopping",
       description: "Weekend super market",
-      type: "Expense",
+      type: EXPENSE,
       wallet: "Bank",
     },
     {
@@ -43,7 +47,7 @@ function App() {
       amount: "50",
       category: "Food",
       description: "Hangout weekend",
-      type: "Expense",
+      type: EXPENSE,
       wallet: "Bank",
     },
   ];
@@ -71,10 +75,10 @@ function App() {
     "Lottery",
     "Investment",
   ]);
-  const [expenseType, setExpenseType] = useState(["Income", "Expense"]);
+  const [expenseType, setExpenseType] = useState([INCOME, EXPENSE]);
   const [transactionList, setTransactionList] = useState(data);
-  const incomeList = transactionList.filter((elm) => elm.type === "Income");
-  const expenseList = transactionList.filter((elm) => elm.type === "Expense");
+  const incomeList = transactionList.filter((elm) => elm.type === INCOME);
+  const expenseList = transactionList.filter((elm) => elm.type === EXPENSE);
 
   const getCategoryTotalAmount = (category, list) => {
     return list
@@ -117,6 +121,18 @@ function App() {
     setTransactionList(filteredTransaction);
   };
 
+  const onEditTransaction = (id) => {
+    // console.log(id);
+    const findedIdx = transactionList.findIndex(
+      (transaction) => transaction.id === id
+    );
+    console.log(findedIdx);
+    
+   /*  const newTransaction= {...transactionList[filteredIdx], ...newValue};
+    console.log(newTransaction);
+    setTransactionList(newTransaction); */
+  }
+
   useEffect(() => {
     setBalance(incomeTotalAmount - expenseTotalAmount);
   }, [transactionList]);
@@ -137,6 +153,7 @@ function App() {
           incomeBasedOnCategory,
           onAddNewTransaction,
           onDeleteTransaction,
+          onEditTransaction,
           activeTabIndex,
           handleTabIndex,
         }}

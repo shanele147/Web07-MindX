@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { useExpenseContext } from "../../contexts/ExpenseContext";
 import expenseAppService from "../../services";
-import InputField from "../InputField";
+import AddingForm from "../AddingForm";
 import "./Header.scss";
 
 const Header = () => {
@@ -119,7 +119,7 @@ const Header = () => {
           {navList}
           <div className="nav-container_logo sm:w-1/5 flex-col sm:flex-row flex-wrap sm:justify-end"></div>
         </MobileNav>
-        <InputField open={open} handleOpen={handleOpen} />
+        <AddingForm open={open} handleOpen={handleOpen} />
       </Navbar>
 
       <div
